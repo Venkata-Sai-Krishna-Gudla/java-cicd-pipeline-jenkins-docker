@@ -1,10 +1,29 @@
-# 🚀 Java CI/CD Pipeline using Jenkins, Maven, Docker & Docker Hub
+#  Java CI/CD Pipeline using Jenkins, Maven, Docker & Docker Hub
 
-## 📖 Project Overview
+##  Project Overview
 
 This project demonstrates an end-to-end CI/CD pipeline built using **Jenkins**, **Maven**, **Docker**, **Docker Hub**, and **AWS EC2**.
 
 The objective of this project is to automate the complete software delivery process, from source code checkout to Docker image publishing.
+
+---
+---
+
+##  Jenkins Pipeline Execution
+
+### Jenkins Stage View
+
+![Jenkins Pipeline](jenkins-stage-view.png)
+
+The pipeline automatically:
+
+- Clones source code from GitHub
+- Builds the Java application
+- Executes test cases
+- Compiles source code
+- Creates Docker image
+- Tags Docker image
+- Pushes image to Docker Hub
 
 ---
 
@@ -95,25 +114,7 @@ Docker Hub Repository
 | Docker Login | Authenticate with Docker Hub |
 | Docker Image Push | Push image to Docker Hub |
 
----
 
-## 📊 Jenkins Pipeline Execution
-
-### Jenkins Stage View
-
-![Jenkins Pipeline](screenshots/jenkins-stage-view.png)
-
-The pipeline automatically:
-
-- Clones source code from GitHub
-- Builds the Java application
-- Executes test cases
-- Compiles source code
-- Creates Docker image
-- Tags Docker image
-- Pushes image to Docker Hub
-
----
 
 ## 🐳 Docker Hub Integration
 
@@ -208,35 +209,7 @@ tag does not exist
 ```bash
 docker tag java-jenkins-docker:latest krishnakumargv/java-jenkins-docker:latest
 ```
-
----
-
-## 🎯 Skills Demonstrated
-
-- CI/CD Pipeline Development
-- Jenkins Pipeline as Code
-- Maven Build Automation
-- Docker Image Creation
-- Docker Hub Integration
-- AWS EC2 Administration
-- Linux Troubleshooting
-- Git & GitHub
-- DevOps Fundamentals
-
----
-
-## 🚀 Future Improvements
-
-- SonarQube Integration
-- Trivy Security Scanning
-- Kubernetes Deployment
-- Terraform Automation
-- Slack Notifications
-- GitHub Webhooks
-
----
-
-## 👨‍💻 Author
+##  Author
 
 **Krishna Kumar Gudla**
 
