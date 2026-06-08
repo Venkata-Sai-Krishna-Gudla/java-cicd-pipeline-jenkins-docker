@@ -2,12 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Github Repository') {
+
+        stage('Clone GitHub Repository') {
             steps {
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/theshubhamgour/jenkins-tutorial.git'
+                git branch: 'main',
+                    changelog: false,
+                    poll: false,
+                    url: 'https://github.com/theshubhamgour/jenkins-tutorial.git'
+
                 sh 'pwd'
             }
         }
+
         stage('Build') {
             steps {
                 dir('3-java-jenkins-docker-app') {
@@ -15,6 +21,7 @@ pipeline {
                 }
             }
         }
+
         stage('Test') {
             steps {
                 dir('3-java-jenkins-docker-app') {
@@ -22,46 +29,38 @@ pipeline {
                 }
             }
         }
+
         stage('Compile') {
             steps {
                 dir('3-java-jenkins-docker-app') {
                     sh 'mvn compile'
                 }
             }
-        }    
-        stage('Docker image Build') {
+        }
+
+        stage('Docker Image Build') {
             steps {
                 dir('3-java-jenkins-docker-app') {
                     sh 'docker build -t java-jenkins-docker:latest .'
                 }
             }
-        } 
-        stage('Docker image Tag') {
+        }
+
+        stage('Docker Image Tag') {
             steps {
-                dir('3-java-jenkins-docker-app') {
-                    sh 'docker tag java-jenkins-docker:latest theshubhamgour/java-jenkins-docker:latest'
-                }
-            }
-        }   
-        stage('Docker Login ') {
-            steps {
-                dir('3-java-jenkins-docker-app') {
-                    sh 'docker login -u theshubhamgour -p redhat123#'
-                }
+                sh 'docker tag java-jenkins-docker:latest krishnakumargv/java-jenkins-docker:latest'
             }
         }
-        stage('Docker Image Push ') {
+
+        stage('Docker Login') {
             steps {
-                dir('3-java-jenkins-docker-app') {
-                    sh 'docker push theshubhamgour/java-jenkins-docker:latest'
-                }
+                echo 'Docker Hub credentials configured in Jenkins Credentials Manager'
             }
         }
-        stage('Clean Work Space ') {
+
+        stage('Docker Image Push') {
             steps {
-                dir('3-java-jenkins-docker-app') {
-                    cleanWs()
-                }
+                sh 'docker push krishnakumargv/java-jenkins-docker:latest'
             }
         }
     }
